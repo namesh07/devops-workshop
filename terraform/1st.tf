@@ -42,7 +42,7 @@ resource "aws_security_group" "demo-sg" {
   }
 
 tags = {
-    Name = "demo-sg-tag"
+    Name = "demo-sg"
 }
 
 }
