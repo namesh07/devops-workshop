@@ -7,13 +7,13 @@ resource "aws_instance" "demo-server" {
     instance_type = "t2.micro"
     key_name = "devops"
     security_groups = [ "demo-sg" ]
-}
+
 
 tags = {
     Name = "demo-server"  # This tags the instance with the key "Name" and value "MyEC2Instance"
     Environment = "testing"  # You can add additional tags as needed
   }
-
+}
 resource "aws_security_group" "demo-sg" {
   name        = "demo-sg"
   description = "Allow traffic for demo-sg"
