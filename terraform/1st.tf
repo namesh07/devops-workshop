@@ -11,7 +11,7 @@ resource "aws_instance" "demo-server" {
     subnet_id = aws_subnet.dpp-public_subent_01.id
   for_each = toset(["jenkins-master","build-slave","ansible"])
 tags = {
-    Name = "$(each.key)"  # This tags the instance with the key "Name" and value "MyEC2Instance"
+    Name = "${each.key}"  # This tags the instance with the key "Name" and value "MyEC2Instance"
   }
 }
 resource "aws_security_group" "demo-sg" {
