@@ -6,17 +6,18 @@ resource "aws_instance" "demo-server" {
     ami = "ami-051f7e7f6c2f40dc1"
     instance_type = "t2.micro"
     key_name = "devops"
-    security_groups = [ "demo-sg" ]
-
-
+    //security_groups = [ "demo-sg" ]
+    vpc_security_group_ids = [aws_subnet.dpp-public_subent_01.id]
+    subnet_id = aws_subnet.dpp-public_subent_01.id
+  for_each = toset(["jenkins-master","build-slave","ansible"])
 tags = {
-    Name = "demo-server"  # This tags the instance with the key "Name" and value "MyEC2Instance"
-    Environment = "testing"  # You can add additional tags as needed
+    Name = "$(each.key)"  # This tags the instance with the key "Name" and value "MyEC2Instance"
   }
 }
 resource "aws_security_group" "demo-sg" {
   name        = "demo-sg"
   description = "Allow traffic for demo-sg"
+  vpc_id = aws_vpc.dpp-vpc.id
 
   // Ingress (Inbound) Rules
   ingress {
