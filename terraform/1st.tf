@@ -3,7 +3,7 @@ region  = "us-east-1"
 }
 
 resource "aws_instance" "demo-server" {
-    ami = "ami-051f7e7f6c2f40dc1"
+    ami = "ami-053b0d53c279acc90"
     instance_type = "t2.micro"
     key_name = "devops"
     //security_groups = [ "demo-sg" ]
